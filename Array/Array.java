@@ -1,3 +1,8 @@
+/*
+ * Creating the Array as a class
+ */
+package Array;
+
 public class Array
 {
     int[] array;
