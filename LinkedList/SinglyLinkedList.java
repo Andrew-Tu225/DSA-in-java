@@ -30,30 +30,47 @@ public class SinglyLinkedList
         System.out.print("null");
     }
 
-    //insert new node as first element of linked list
-    public void insertFirst(int value)
+    //insert a new node to a linked list at given position
+    public void insert(int position, int value)
     {
         ListNode newNode = new ListNode(value);
-        newNode.next = head;
-        head = newNode;
+        if (position==1)
+        {
+            newNode.next = head;
+            head = newNode;
+        }
+
+        int counter = 1;
+        ListNode previous = head;
+        while(counter < position-1)
+        {
+            counter += 1;
+            previous = previous.next;
+        }
+        ListNode current = previous.next;
+        previous.next = newNode;
+        newNode.next = current;
     }
 
-    //insert new node to last element of the linked list
-    public void insertLast(int value)
+    //delete a node at the given position from the linked List
+    public void delete(int position)
     {
-        ListNode newNode = new ListNode(value);
-        if(head==null)
+        if(head == null)
         {
-            head = newNode;
             return;
         }
-        ListNode current = head;
-        while(current.next != null)
+        ListNode previous = head;
+        int counter = 1;
+        while(counter < position - 1)
         {
-            current = current.next;
+            counter++;
+            previous = previous.next;
         }
-        current.next = newNode;
+        ListNode current = previous.next;
+        previous.next = current.next;
+        current.next = null;
     }
+
     public static void main(String[] args) 
     {
         SinglyLinkedList sll = new SinglyLinkedList();
